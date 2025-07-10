@@ -2,6 +2,7 @@
 - Criação do repositório no GitHub ✔
 - Escolha do tema do sistema ✔
 - Documento de Requisitos Funcionais completo no repositório
+- (ADICIONAL) Design base do site ✔
 - Estrutura inicial do projeto (ambiente virtual, app.py, requirements.txt)
 - Configuração inicial do banco SQLite (tabela de usuários)
 
