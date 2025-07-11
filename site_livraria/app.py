@@ -7,6 +7,22 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Roda o app
+@app.route('/cadastro')
+def index():
+    return render_template('cadastro.html')
+
+@app.route('/login')
+def index():
+    return render_template('login.html')
+
+@app.route('/livros')
+def index():
+    return render_template('livros.html')
+
+@app.route('/biblioteca')
+def index():
+    return render_template('biblioteca.html')
+
+# Rodar o app
 if __name__ == '__main__':
     app.run(debug=True)
