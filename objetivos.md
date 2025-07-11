@@ -1,9 +1,9 @@
 ## Semana 1 (04/07–10/07)
-- Criação do repositório no GitHub ✔
-- Escolha do tema do sistema ✔
-- Documento de Requisitos Funcionais completo no repositório
-- (ADICIONAL) Design base do site ✔
-- Estrutura inicial do projeto (ambiente virtual, app.py, requirements.txt)
+- Criação do repositório no GitHub ✔ (Cecília)
+- Escolha do tema do sistema ✔ (Todos)
+- Documento de Requisitos Funcionais completo no repositório ✔ (Demilly)
+- Design base do site ✔ (Cecília)
+- Estrutura inicial do projeto (ambiente virtual, app.py, requirements.txt) (Camila)
 - Configuração inicial do banco SQLite (tabela de usuários)
 
 ## Semana 2 (11/07–17/07)
