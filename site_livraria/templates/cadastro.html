@@ -2,5 +2,22 @@
 {% block titulo %} Registro {% endblock %}
 
 {% block conteudo %}
-
+<form action="{{url_for('cadastro')}}" method="post">
+    Digite seu e-mail:<input type="text" name="email">
+    Crie um nome de usuário: <input type="text" name="nome">
+    Crie uma senha:<input type="password" name="senha">
+    Escolha sua preferência:<select name="preferencias">
+      <option value="acao">Ação</option>
+      <option value="aventura">Aventura</option>
+      <option value="comedia">Comédia</option>
+      <option value="drama">Drama</option>
+      <option value="drama">Fantasia</option>
+      <option value="ficcao">Ficção</option>
+      <option value="terror">Terror</option>
+      <option value="romance">Romance</option>
+      <option value="educacao">Educação</option>
+      <option value="universidade">Universidade</option>
+    </select><br>
+    <button>Enviar</button>
+</form>
 {% endblock %}
