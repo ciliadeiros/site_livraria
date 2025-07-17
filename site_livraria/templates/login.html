@@ -2,5 +2,11 @@
 {% block titulo %} Login {% endblock %}
 
 {% block conteudo %}
+<form method="POST" action="/login">
+    Digite seu e-mail: <input name="email">
+    Digite sua senha:<input name="senha" type="password">
+    <button type="submit">Entrar</button>
+</form>
+<a href="{{url_for('cadastro')}}">Crie sua conta</a>
 
 {% endblock %}
