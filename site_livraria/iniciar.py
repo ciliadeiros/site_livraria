@@ -1,9 +1,9 @@
 import sqlite3
 
-BANCO='schema.sql'
+BANCO='sites_livraria/schemas.sql'
 
 # conectar com o banco
-conexao = sqlite3.connect('banco.db')
+conexao = sqlite3.connect('site_livrariabanco.db')
 
 # executar a criação tabela
 with open(BANCO) as f:

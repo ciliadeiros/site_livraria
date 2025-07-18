@@ -25,24 +25,25 @@ def cadastro():
         nome = request.form['nome']
         senha = request.form['senha']
         preferencias = request.form['preferencias']
+        print(f'Email: {email}, Nome {nome}, Senha:{senha}, Preferencias:{preferencias}')
 
         conexao = obter_conexao()
-        sql = "SELECT * FROM usuarios WHERE email = ?"
+        sql = "SELECT * FROM usuarios WHERE usu_email = ?"
         resultado = conexao.execute(sql, (email,) ).fetchone()
         
         if not resultado:
-            sql = "INSERT INTO usuarios(usu_email, usu_nome, usu_senha, usu_pre) VALUES(?,?,?,?)"
+            sql = "INSERT INTO usuarios(usu_email, usu_nome, usu_senha, usu_preferencias) VALUES(?,?,?,?)"
             conexao.execute(sql, (email, nome, senha, preferencias))
             conexao.commit()
             conexao.close()
 
             # login do usuário
-            user = User(nome=email,senha=senha)
+            user = User(email=email, nome=nome, senha=senha)
             user.id = email
             login_user(user)
 
             flash('Cadastro realizado com sucesso', category='success')
-            return redirect(url_for('dash'))
+            return redirect(url_for('index'))
         conexao.close()
 
 
@@ -61,7 +62,7 @@ def login():
         conexao.close()
 
         if resultado:
-            user = User(nome=email,senha=senha)
+            user = User(email=email, nome=nome, senha=senha)
             user.id = email
             login_user(user)
             flash('Login feito com sucesso!', category='success')
