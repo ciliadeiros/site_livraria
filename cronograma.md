@@ -5,7 +5,7 @@
 - Design base do site ✔ (Cecília)
 - Estrutura inicial do projeto (ambiente virtual, app.py, requirements.txt) (Camila)
 - Modelo do banco de dados ✔ (Cecília)
-- Configuração inicial do banco SQLite (tabela de usuários)
+- Configuração inicial do banco SQLite (tabela de usuários) ✔ (Filipe)
 
 ## Semana 2 (11/07–17/07)
 - Implementar autenticação:
