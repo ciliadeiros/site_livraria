@@ -1,0 +1,15 @@
+<nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('cadastro') }}">Cadastro</a>
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('livros') }}">Livros</a>
+    <a href="{{ url_for('biblioteca') }}">Biblioteca</a>
+
+    <!-- Mostra no menu o botão de logout para o usuário autenticado-->
+    <!-- {% if current_user.is_authenticated %}
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit" style="color: white;">Logout</button>
+        </form>
+    {% endif %} -->
+
+</nav>
