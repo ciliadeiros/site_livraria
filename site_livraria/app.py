@@ -44,8 +44,10 @@ def cadastro():
 
             flash('Cadastro realizado com sucesso', category='success')
             return redirect(url_for('index'))
-        conexao.close()
 
+        else:
+            flash('E-mail já cadastrado. Tente outro.', category='error')
+            conexao.close()
 
     return render_template('cadastro.html')
 
