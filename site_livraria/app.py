@@ -84,6 +84,12 @@ def livros():
 def biblioteca():
     return render_template('biblioteca.html')
 
+@app.route("/logout", methods=["POST"])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login")) 
+
 # Rodar o app
 if __name__ == '__main__':
     app.run(debug=True)
