@@ -6,16 +6,16 @@
 - Estrutura inicial do projeto (ambiente virtual, app.py, requirements.txt) (Camila)
 - Modelo do banco de dados ✔ (Cecília)
 - Configuração inicial do banco SQLite (tabela de usuários) ✔ (Filipe)
-- Conexão do banco de dados com o Flask ✔ (Cecília)
 
 ## Semana 2 (11/07–17/07)
+- Conexão do banco de dados com o Flask ✔ (Cecília)
 - Implementar autenticação:
-  - Página de registro
+  - Página de registro ✔ (Cecília)
   - Página de login
   - Senha com hash seguro
   - Sessão ou Flask-Login para manter usuário autenticado
 - Logout funcional
-- Templates com extends/includes para base e navbar (barra de navegação)
+- Templates com extends/includes para base e navbar (barra de navegação) ✔ (Demilly)
 
 ## Semana 3 (18/07–24/07)
 - Implementar CRUD do recurso escolhido:
