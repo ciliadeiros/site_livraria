@@ -1,4 +1,5 @@
 from flask import Flask, render_template , request, redirect, url_for, session, make_response, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from modelos import User
 import sqlite3 
@@ -26,6 +27,7 @@ def cadastro():
         senha = request.form['senha']
         preferencias = request.form['preferencias']
         print(f'Email: {email}, Nome {nome}, Senha:{senha}, Preferencias:{preferencias}')
+        senha_criptografada = generate_password_hash(senha)
 
         conexao = obter_conexao()
         sql = "SELECT * FROM usuarios WHERE usu_email = ?"
@@ -33,7 +35,7 @@ def cadastro():
         
         if not resultado:
             sql = "INSERT INTO usuarios(usu_email, usu_nome, usu_senha, usu_preferencias) VALUES(?,?,?,?)"
-            conexao.execute(sql, (email, nome, senha, preferencias))
+            conexao.execute(sql, (email, nome, senha_criptografada, preferencias))
             conexao.commit()
             conexao.close()
 
