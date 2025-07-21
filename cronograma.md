@@ -12,7 +12,7 @@
 - Implementar autenticação:
   - Página de registro ✔ (Cecília)
   - Página de login
-  - Senha com hash seguro
+  - Senha com hash seguro ✔ (Filipe)
   - Sessão ou Flask-Login para manter usuário autenticado
 - Logout funcional
 - Templates com extends/includes para base e navbar (barra de navegação) ✔ (Demilly)
