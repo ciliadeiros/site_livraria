@@ -1,9 +1,33 @@
 <nav>
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('cadastro') }}">Cadastro</a>
-    <a href="{{ url_for('login') }}">Login</a>
-    <a href="{{ url_for('livros') }}">Livros</a>
-    <a href="{{ url_for('biblioteca') }}">Biblioteca</a>
+    <img class="logo" src="{{ url_for('static', filename='logo.svg') }}">
+    <div class="links">
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='casa_icon.svg') }}">
+            <a href="{{ url_for('index') }}">Início</a>
+        </div>
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='livro_icon.svg') }}">
+            <a href="{{ url_for('livros') }}">Livros</a>
+        </div>
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='barras_icon.svg') }}">
+            <a href="{{ url_for('biblioteca') }}">Minha Biblioteca</a>
+        </div>
+        <!--
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='calendario_icon.svg') }}">
+            <a href="{{ url_for('biblioteca') }}">Registro de Leitura</a>
+        </div>
+        -->
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='pessoa_icon.svg') }}">
+            <a href="{{ url_for('cadastro') }}">Cadastro</a>
+        </div>
+        <div class="pag">
+            <img class="logo" src="{{ url_for('static', filename='pessoa_icon.svg') }}">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
 
     <!-- Mostra no menu o botão de logout para o usuário autenticado-->
     <!-- {% if current_user.is_authenticated %}
