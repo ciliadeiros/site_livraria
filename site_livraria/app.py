@@ -4,7 +4,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, U
 from modelos import User
 import sqlite3 
 from database import obter_conexao
-
+from flask import session, redirect
 login_manager = LoginManager() 
 app = Flask(__name__)
 app.secret_key = 'ablublublu'
@@ -17,6 +17,10 @@ def load_user(user_id):
 @login_required
 @app.route('/')
 def index():
+    #cria o dicionario para guardar os dados
+    if 'usuarios' not in session:
+        usuarios = {}
+        session['usuarios'] = usuarios
     return render_template('index.html')
 
 @app.route('/cadastro', methods=['POST', 'GET'])
@@ -59,22 +63,33 @@ def login():
         email = request.form['email']
         senha = request.form['senha']
 
-        # conectar com o banco de dados
-        conexao = obter_conexao()
-        sql = "SELECT * FROM users WHERE email = ? AND senha = ?"
-        resultado = conexao.execute(sql, (email, senha)).fetchone()
-        conexao.close()
+        dicionario = session.get('usuarios')
+        #realiza o login do usuário
+        if email in dicionario and senha == dicionario[email]:
+            utilizador= User(nome=email,senha=senha)
+            utilizador.id = email
+            login_user(utilizador)
+            return redirect(url_for('livros')) # reireciona para a pagina os livros
+        #se você não está logado ou digitou senha/email errado, vai aparecer essa mensagem de erro
+        flash ('Senha ou login incorreto',category='error')
+        return redirect (url_for('login'))
+    return render_template('login.html')
+        # # conectar com o banco de dados
+        # conexao = obter_conexao()
+        # sql = "SELECT * FROM users WHERE email = ? AND senha = ?"
+        # resultado = conexao.execute(sql, (email, senha)).fetchone()
+        # conexao.close()
 
-        if resultado:
-            user = User(email=email, nome=nome, senha=senha)
-            user.id = email
-            login_user(user)
-            flash('Login feito com sucesso!', category='success')
-            return redirect(url_for('dash'))
+        # if resultado:
+        #     user = User(email=email, nome=nome, senha=senha)
+        #     user.id = email
+        #     login_user(user)
+        #     flash('Login feito com sucesso!', category='success')
+        #     return redirect(url_for('dash'))
         
-        else:
-            flash('Usuário ou senha incorretos. Tente novamente.', category='error')
-            return redirect(url_for('login'))
+        # else:
+        #     flash('Usuário ou senha incorretos. Tente novamente.', category='error')
+        #     return redirect(url_for('login'))
 
     return render_template('login.html')
 
