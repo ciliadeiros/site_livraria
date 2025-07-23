@@ -67,12 +67,14 @@ def login():
         #realiza o login do usuário
         if email in dicionario and senha == dicionario[senha]:
             utilizador= User(nome=email,senha=senha)
+            print('Dicionário:', dicionario)
             utilizador.id = email
             login_user(utilizador)
             return redirect(url_for('livros')) # reireciona para a pagina os livros
         #se você não está logado ou digitou senha/email errado, vai aparecer essa mensagem de erro
         flash ('Senha ou login incorreto',category='error')
         return redirect (url_for('login'))
+
     return render_template('login.html')
         # # conectar com o banco de dados
         # conexao = obter_conexao()
@@ -91,7 +93,6 @@ def login():
         #     flash('Usuário ou senha incorretos. Tente novamente.', category='error')
         #     return redirect(url_for('login'))
 
-    return render_template('login.html')
 
 @login_required
 @app.route('/livros')
