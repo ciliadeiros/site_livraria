@@ -44,7 +44,7 @@ def cadastro():
             conexao.close()
 
             # login do usuário
-            user = User(email=email, nome=nome, senha=senha)
+            user = User(email=email, nome=nome, senha=senha_criptografada)
             user.id = email
             login_user(user)
 
@@ -57,7 +57,7 @@ def cadastro():
 
     return render_template('cadastro.html')
 
-@app.route('/login')
+@app.route('/login', methods=["GET","POST"])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -65,7 +65,7 @@ def login():
 
         dicionario = session.get('usuarios')
         #realiza o login do usuário
-        if email in dicionario and senha == dicionario[email]:
+        if email in dicionario and senha == dicionario[senha]:
             utilizador= User(nome=email,senha=senha)
             utilizador.id = email
             login_user(utilizador)
