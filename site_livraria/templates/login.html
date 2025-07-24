@@ -8,5 +8,12 @@
     <button type="submit">Entrar</button>
     <a href="{{url_for('cadastro')}}">Crie sua conta</a>
 </form>
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+  {% if mensagens %}
+      {% for categoria, mensagem in mensagens %}
+        <p class="{{ categoria }}">{{ mensagem }}</p>
+      {% endfor %}
+  {% endif %}
+{% endwith %}
 
 {% endblock %}
