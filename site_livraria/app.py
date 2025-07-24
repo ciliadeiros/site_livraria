@@ -17,11 +17,11 @@ def load_user(user_id):
 @login_required
 @app.route('/')
 def index():
-    #cria o dicionario para guardar os dados
-    if 'usuarios' not in session:
-        usuarios = {}
-        session['usuarios'] = usuarios
-    return render_template('index.html')
+    # #cria o dicionario para guardar os dados
+    # if 'usuarios' not in session:
+    #     usuarios = {}
+    #     session['usuarios'] = usuarios
+    # return render_template('index.html')
 
 @app.route('/cadastro', methods=['POST', 'GET'])
 def cadastro():
@@ -63,19 +63,38 @@ def login():
         email = request.form['email']
         senha = request.form['senha']
 
-        dicionario = session.get('usuarios')
-        #realiza o login do usuário
-        if email in dicionario and senha == dicionario[senha]:
-            utilizador= User(nome=email,senha=senha)
-            print('Dicionário:', dicionario)
-            utilizador.id = email
-            login_user(utilizador)
-            return redirect(url_for('livros')) # reireciona para a pagina os livros
-        #se você não está logado ou digitou senha/email errado, vai aparecer essa mensagem de erro
-        flash ('Senha ou login incorreto',category='error')
-        return redirect (url_for('login'))
+        conexao = sqlite3.connect('banco.db') #conecta ao banco de dados
+        conexao.row_factory = sqlite3.Row #as informações vem em formato de dicionários
+        sql = "SELECT * FROM users WHERE email = ? AND senha = ?"
+        resultado = conexao.execute(sql, (email, senha)).fetchone()
+        conexao.close()
+        if resultado:
+            user = User(email=email, senha=senha)
+            user.id = email
+            login_user(user)
+            flash('Login feito com sucesso!', category='success')
+            return redirect(url_for('dash'))
+        else:
+            flash('Usuário ou senha incorretos. Tente novamente.', category='error')
+    return render_template('cadastro.html')
+        #     return redirect(url_for('login'))
+    # if request.method == 'POST':
+    #     email = request.form['email']
+    #     senha = request.form['senha']
 
-    return render_template('login.html')
+    #     dicionario = session.get('usuarios')
+    #     #realiza o login do usuário
+    #     if email in dicionario and senha == dicionario[senha]:
+    #         utilizador= User(nome=email,senha=senha)
+    #         print('Dicionário:', dicionario)
+    #         utilizador.id = email
+    #         login_user(utilizador)
+    #         return redirect(url_for('livros')) # reireciona para a pagina os livros
+    #     #se você não está logado ou digitou senha/email errado, vai aparecer essa mensagem de erro
+    #     flash ('Senha ou login incorreto',category='error')
+    #     return redirect (url_for('login'))
+
+    # return render_template('login.html')
         # # conectar com o banco de dados
         # conexao = obter_conexao()
         # sql = "SELECT * FROM users WHERE email = ? AND senha = ?"
