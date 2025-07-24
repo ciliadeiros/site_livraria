@@ -21,7 +21,7 @@ def index():
     # if 'usuarios' not in session:
     #     usuarios = {}
     #     session['usuarios'] = usuarios
-    # return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/cadastro', methods=['POST', 'GET'])
 def cadastro():
@@ -60,23 +60,22 @@ def cadastro():
 @app.route('/login', methods=["GET","POST"])
 def login():
     if request.method == 'POST':
+        #recebe os dados do usuário no formuário
         email = request.form['email']
         senha = request.form['senha']
 
         conexao = sqlite3.connect('banco.db') #conecta ao banco de dados
         conexao.row_factory = sqlite3.Row #as informações vem em formato de dicionários
-        sql = "SELECT * FROM users WHERE email = ? AND senha = ?"
-        resultado = conexao.execute(sql, (email, senha)).fetchone()
-        conexao.close()
-        if resultado:
-            user = User(email=email, senha=senha)
-            user.id = email
-            login_user(user)
+        sql = "SELECT * FROM users WHERE email = ? AND senha = ?"  # procura o usuário que possui esses dados
+        resultado  = conexao.execute(sql, (email, senha)).fetchone() # retorna o usuário
+        conexao.close() # a conexão com o banco de dados é encerrada
+        if resultado: # se o usuário foi encontrado e retornado...
+            # user = User(email=email, senha=senha) # 'user' é a tabela do banco, e 'senha' e 'email' os valores. essa função cria um novo usuário
+            user = User(id= resultado['id'], email= resultado['email'], senha = resultado['senha']) # confere os dados do usuário, o id é inserido automaticamente no banco de dados
+            login_user(user) # o usuário é logado
             flash('Login feito com sucesso!', category='success')
-            return redirect(url_for('dash'))
-        else:
-            flash('Usuário ou senha incorretos. Tente novamente.', category='error')
-    return render_template('cadastro.html')
+            return redirect(url_for('livros')) # retorna                                                                                                                                  
+    return render_template('login.html')
         #     return redirect(url_for('login'))
     # if request.method == 'POST':
     #     email = request.form['email']
