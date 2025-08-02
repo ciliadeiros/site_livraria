@@ -105,14 +105,14 @@ def perfil():
 # def livros():
 #     return render_template('livros.html')
 
-@login_required
 @app.route('/biblioteca', methods=["GET", "POST"])
+@login_required
 def biblioteca():
-    id_usuario = current_user.id
+    email_usuario = current_user.email
     conexao = obter_conexao()
     conexao.row_factory = sqlite3.Row
-    SQL = "SELECT livros.liv_id, livros.liv_autor, livros.liv_titulo, livros.liv_genero, livros.liv_lancamento, livros.liv_editora, livros.liv_descricao, livros.liv_pags, livros.liv_capa FROM livros JOIN usuarios_livros ON livros.liv_id = usuarios_livros.liv_id WHERE usuarios_livros.usu_email = ?"
-    books_biblioteca = conexao.execute(SQL, (id_usuario,)).fetchall()
+    SQL = SQL = "SELECT livros.liv_id, livros.liv_autor, livros.liv_titulo, livros.liv_genero, livros.liv_lancamento, livros.liv_editora, livros.liv_descricao, livros.liv_pags, livros.liv_capa FROM livros JOIN usuarios_livros ON livros.liv_id = usuarios_livros.liv_id WHERE usuarios_livros.usu_email = ?"
+    books_biblioteca = conexao.execute(SQL, (email_usuario,)).fetchall()
     conexao.close()
     return render_template('biblioteca.html', books_biblioteca=books_biblioteca)
 
