@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block titulo %} Login {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+  <form method="POST" action="/login">
+      <h1>🤓☝️ Faça login!</h1>
+      Digite seu e-mail: <input name="email">
+      Digite sua senha:<input name="senha" type="password">
+      <p class="link_login">Não possui uma conta? Clique aqui e faça seu <a href="{{url_for('cadastro')}}">CADASTRO!</a></p>
+      <button type="submit">Entrar</button>
+  </form>
+  {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% if mensagens %}
+        {% for categoria, mensagem in mensagens %}
+          <p class="{{ categoria }}">{{ mensagem }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <img class="imagem" src="{{ url_for('static', filename='frase_lahiri.svg') }}">
+</div>
+{% endblock %}

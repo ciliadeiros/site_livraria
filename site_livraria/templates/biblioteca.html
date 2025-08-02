@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block titulo %} Biblioteca {% endblock %}
+
+{% block conteudo %}
+<div class="livros_biblioteca">
+    {% for livro in books_biblioteca %}
+        <div class="livros">
+            <img src="{{ livro['liv_capa'] }}" style="width:150px; height:210px; object-fit: cover;"> <br>
+            <p><strong>{{ livro['liv_titulo'] }}</strong></p>
+            <form action="{{ url_for('retirar_livro') }}" method="POST">
+                <input type="hidden" name="liv_id" value="{{ livro['liv_id'] }}">
+                <button type="submit">Remover da biblioteca</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

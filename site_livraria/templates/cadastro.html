@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% block titulo %} Registro {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+  <form action="{{url_for('cadastro')}}" method="post">
+    <h1>✏️📄 Cadastre-se!</h1>
+      Digite seu e-mail:<input type="text" name="email">
+      Crie um nome de usuário: <input type="text" name="nome">
+      Crie uma senha:<input type="password" name="senha">
+      Escolha sua preferência:<select name="preferencias" style="margin-bottom: 5px;">
+        <option value="acao">Ação</option>
+        <option value="aventura">Aventura</option>
+        <option value="comedia">Comédia</option>
+        <option value="drama">Drama</option>
+        <option value="fantasia">Fantasia</option>
+        <option value="ficcao">Ficção</option>
+        <option value="terror">Terror</option>
+        <option value="romance">Romance</option>
+        <option value="educacao">Educação</option>
+      </select>
+      <p class="link_login">Já possui uma conta? Clique aqui e faça <a href="{{url_for('login')}}">LOGIN!</a></p>
+      <button type="submit">CONFIRMAR</button>
+  </form>
+  {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% if mensagens %}
+        {% for categoria, mensagem in mensagens %}
+          <p class="{{ categoria }}">{{ mensagem }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <img class="imagem" src="{{ url_for('static', filename='frase_maurois.svg') }}">
+</div>
+{% endblock %}

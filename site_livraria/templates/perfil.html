@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block titulo %} Perfil {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">{% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+  <form method="POST" action="{{url_for('perfil')}}">
+      <h1>🤓 Meu Perfil</h1>
+      Nome de usuário: {{ usuario.nome }}
+      E-mail: {{ usuario.email }}
+      Preferências: {{ usuario.preferencias }}
+      <p><strong>(tem que ajeitar)</strong></p>
+      <button type="submit">LOGOUT</button>
+  </form>
+  <img class="imagem" src="{{ url_for('static', filename='frase_lahiri.svg') }}">
+</div>
+
+{% endblock %}

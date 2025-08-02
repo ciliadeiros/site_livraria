@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 125vh;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+}
+
+.container-livros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 5vh;
+    margin-top: 37vh;
+    margin-bottom: 27vh;
+    max-height: 100vh;
+    overflow-y: auto;  /* permite rolar a página se os livros forem muitos */
+}
+
+.livros_biblioteca {
+    display: flex;
+    margin-top: -13vh;
+
+}
+
+.livros {
+    max-width: 197px;
+    text-align: center;
+    margin-left: 0;
+}
+
+.img_biblioteca {
+    width: 100%;
+    height: 100%;
+}
+
+nav{
+    background-color: #7a987d;
+    padding: 25px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 90%;
+}
+
+nav .logo{
+    width: 8%;
+    margin-left: 25px;
+}
+
+nav .links{
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-right: 25px;
+}
+
+nav .pag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 25px;
+}
+
+nav .pag img{
+    width: 30px;}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.imgs_links {
+    display: block;
+    margin-top: 15.5vh;
+    margin-bottom: 8vh;
+}
+
+.img_inicial {
+    margin-bottom: 2vh;
+}
+
+footer{
+    background-color: #7a987d;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    opacity: 90%;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 20px 10px;
+}
+
+.container {
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    display: flex;
+    gap: 70px;
+}
+
+.conteudo {
+    /* position: relative;
+    top: 100px; */
+    /* min-height: calc(120vh - 120px); */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.categorias img {
+    width: 100%; 
+    max-width: 647px; 
+    margin: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+button {
+    background-color: #41a54e;
+    border-radius: 10px;
+    padding: 2px;
+    border: 0px;
+    width: 120px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}

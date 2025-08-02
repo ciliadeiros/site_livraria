@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block titulo %} Página Inicial {% endblock %}
+
+{% block conteudo %}
+<div class="imgs_links">
+    <div class="img_inicial">
+        <a href="{{url_for('biblioteca')}}">
+            <img src="../static/img_biblioteca.png" alt="Imagem de background" class="img_biblioteca">
+        </a>
+    </div>
+    <div class="categorias">
+        <a href=""><img src="../static/img_romance.png" alt=""></a>
+        <a href=""><img src="../static/img_fantasia.png" alt=""></a>
+        <a href=""><img src="../static/img_educação.png" alt=""></a>
+        <a href=""><img src="../static/img_universitário.png" alt=""></a>
+    </div>
+</div>
+<!-- <a href=""><img src="../static/img_educação.png" alt=""></a>
+<a href=""><img src="../static/img_fantasia.png" alt=""></a>
+<a href=""><img src="../static/img_universitário.png" alt=""></a> -->
+{% endblock %}
