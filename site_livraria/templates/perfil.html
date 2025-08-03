@@ -11,7 +11,9 @@
       E-mail: {{ usuario.email }}
       Preferências: {{ usuario.preferencias }}
       <p><strong>(tem que ajeitar)</strong></p>
-      <button type="submit">LOGOUT</button>
+  </form>
+  <form method="POST" action="{{ url_for('logout') }}">
+      <button type="submit">Logout</button>
   </form>
   <img class="imagem" src="{{ url_for('static', filename='frase_lahiri.svg') }}">
 </div>

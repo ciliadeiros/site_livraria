@@ -5,7 +5,8 @@ from modelos import User
 import sqlite3 
 from database import obter_conexao
 from flask import session, redirect
-login_manager = LoginManager() 
+login_manager = LoginManager()
+login_manager.login_view = 'login'
 app = Flask(__name__)
 app.secret_key = 'ablublublu'
 login_manager.init_app(app)
@@ -79,7 +80,6 @@ def login():
 
     return render_template('login.html')
 
-
 @app.route('/perfil')
 @login_required
 def perfil():
@@ -100,23 +100,19 @@ def perfil():
     
     return redirect(url_for('cadastro'))
 
-# @login_required
-# @app.route('/livros')
-# def livros():
-#     return render_template('livros.html')
-
 @app.route('/biblioteca', methods=["GET", "POST"])
 @login_required
 def biblioteca():
     email_usuario = current_user.email
     conexao = obter_conexao()
     conexao.row_factory = sqlite3.Row
-    SQL = SQL = "SELECT livros.liv_id, livros.liv_autor, livros.liv_titulo, livros.liv_genero, livros.liv_lancamento, livros.liv_editora, livros.liv_descricao, livros.liv_pags, livros.liv_capa FROM livros JOIN usuarios_livros ON livros.liv_id = usuarios_livros.liv_id WHERE usuarios_livros.usu_email = ?"
+    SQL = "SELECT * FROM livros JOIN usuarios_livros ON livros.liv_id = usuarios_livros.liv_id WHERE usuarios_livros.usu_email = ?"
     books_biblioteca = conexao.execute(SQL, (email_usuario,)).fetchall()
     conexao.close()
     return render_template('biblioteca.html', books_biblioteca=books_biblioteca)
 
 @app.route("/adicionar_livro", methods=["GET", "POST"])
+@login_required
 def adicionar_livro():
     liv_id = request.form.get("liv_id")
     usu_email = current_user.id
@@ -125,7 +121,7 @@ def adicionar_livro():
     conexao.row_factory = sqlite3.Row
 
     # Verifica se o livro existe
-    livro = conexao.execute("SELECT livros.liv_id FROM livros WHERE liv_id = ?", (liv_id,)).fetchone()
+    livro = conexao.execute("SELECT liv_id FROM livros WHERE liv_id = ?", (liv_id,)).fetchone()
 
     if livro:
         # Verifica se já está adicionado
@@ -150,7 +146,6 @@ def logout():
     logout_user()
     return redirect(url_for("login")) 
 
-from popular_tabela import books  # importa do outro arquivo
 @login_required
 @app.route('/livros')
 def livros():
