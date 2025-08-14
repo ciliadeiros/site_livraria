@@ -5,7 +5,9 @@
 <div class="container-livros">
     {% for livro in livros %}
         <div class="livros">
-            <img src="{{ livro['liv_capa'] }}" style="width:150px; height:210px; object-fit: cover;"> <br>
+            <a href="{{url_for('detalhar_livro', livro_id=livro['liv_id']) }}">
+                <img src="{{ livro['liv_capa'] }}" style="width:150px; height:210px; object-fit: cover;">
+            </a> <br>
             <p><strong>{{ livro['liv_titulo'] }}</strong></p>
             <form action="{{ url_for('adicionar_livro') }}" method="POST">
                 <input type="hidden" name="liv_id" value="{{ livro['liv_id'] }}">

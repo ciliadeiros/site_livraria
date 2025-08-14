@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block titulo %} Detalhes {% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+    <img src="{{ livro['liv_capa'] }}" style="width:350px; height:410px; object-fit: cover;"> <br>
+    <div class="informacoes">
+        <p><strong>Título: </strong>{{ livro['liv_titulo'] }}</p> <br>
+        <p><strong>Autor: </strong>{{ livro['liv_autor'] }}</p> <br>
+        <p><strong>Ano de lançamento: </strong>{{ livro['liv_lancamento'] }}</p>  <br>
+        <p><strong>Gênero(s): </strong>{{ livro['liv_genero'] }}</p>  <br>
+        <p><strong>Sinopse: </strong>{{ livro['liv_descricao'] }}</p>  <br>
+        <form action="{{ url_for('adicionar_livro') }}" method="POST">
+            <input type="hidden" name="liv_id" value="{{ livro['liv_id'] }}">
+            <button type="submit">Adicionar à biblioteca</button>
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

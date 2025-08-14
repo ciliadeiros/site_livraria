@@ -154,3 +154,7 @@ button {
     font-weight: bold;
     margin-top: 15px;
 }
+
+.informacoes{
+    text-align: justify;
+}

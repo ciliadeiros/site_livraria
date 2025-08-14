@@ -197,6 +197,16 @@ def livros():
     conexao.close()
     return render_template('livros.html', livros=livros)
 
+@app.route('/livros/<int:livro_id>')
+def detalhar_livro(livro_id):
+    conexao = obter_conexao()
+    conexao.row_factory = sqlite3.Row
+    livro = conexao.execute('SELECT * FROM livros WHERE liv_id = ?', (livro_id,)).fetchone()
+    conexao.close()
+    # if livro is None:
+    #     return "Livro não encontrado", 404
+    return render_template('detalhe_livro.html', livro=livro)
+
 @app.route('/retirar_livro', methods=['POST'])
 @login_required
 def retirar_livro():
