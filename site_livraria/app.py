@@ -100,6 +100,47 @@ def perfil():
     
     return redirect(url_for('cadastro'))
 
+@app.route('/perfil/editar', methods=['GET', 'POST'])
+@login_required
+def editar_perfil():
+    conexao = obter_conexao()
+    conexao.row_factory = sqlite3.Row
+
+    if request.method == 'POST':
+        novo_nome = request.form['nome']
+        novo_email = request.form['email']
+        novas_pref = request.form['preferencias']
+
+        conexao.execute("""
+            UPDATE usuarios
+            SET usu_nome = ?, usu_email = ?, usu_preferencias = ?
+            WHERE usu_email = ?
+        """, (novo_nome, novo_email, novas_pref, current_user.email))
+        conexao.commit()
+        conexao.close()
+
+        current_user.email = novo_email  # Atualiza o email da sessão
+        flash('Perfil atualizado com sucesso!', 'success')
+        return redirect(url_for('perfil'))
+
+    resultado = conexao.execute("""
+        SELECT usu_email, usu_nome, usu_preferencias
+        FROM usuarios
+        WHERE usu_email = ?
+    """, (current_user.email,)).fetchone()
+    conexao.close()
+
+    if resultado:
+        usuario = {
+            'nome': resultado['usu_nome'],
+            'email': resultado['usu_email'],
+            'preferencias': resultado['usu_preferencias']
+        }
+        return render_template('editar_perfil.html', usuario=usuario)
+
+    return redirect(url_for('perfil'))
+
+
 @app.route('/biblioteca', methods=["GET", "POST"])
 @login_required
 def biblioteca():

@@ -22,14 +22,14 @@
       </select>
       <p class="link_login">Já possui uma conta? Clique aqui e faça <a href="{{url_for('login')}}">LOGIN!</a></p>
       <button type="submit">CONFIRMAR</button>
-  </form>
-  {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% with mensagens = get_flashed_messages(with_categories=true) %}
     {% if mensagens %}
         {% for categoria, mensagem in mensagens %}
           <p class="{{ categoria }}">{{ mensagem }}</p>
         {% endfor %}
     {% endif %}
-  {% endwith %}
+    {% endwith %}
+  </form>
   <img class="imagem" src="{{ url_for('static', filename='frase_maurois.svg') }}">
 </div>
 {% endblock %}

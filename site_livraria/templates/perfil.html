@@ -1,21 +1,25 @@
 {% extends 'base.html'%}
 {% block titulo %} Perfil {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='perfil.css') }}">{% endblock %}
 
 {% block conteudo %}
 
+<img class="imagem" src="{{ url_for('static', filename='aesthetic.png') }}">
 <div class="container">
-  <form method="POST" action="{{url_for('perfil')}}">
+  <div class="info">
       <h1>🤓 Meu Perfil</h1>
-      Nome de usuário: {{ usuario.nome }}
-      E-mail: {{ usuario.email }}
-      Preferências: {{ usuario.preferencias }}
-      <p><strong>(tem que ajeitar)</strong></p>
-  </form>
+      <label><strong>Nome de usuário:</strong> {{ usuario.nome }}</label>
+      <label><strong>E-mail:</strong> {{ usuario.email }}</label>
+      <label><strong>Preferências:</strong> {{ usuario.preferencias }}</label>
+  </div>
+  <div style="display: flex; gap: 10px; margin-top: 10px;">
+    <a href="{{ url_for('editar_perfil') }}">
+      <button type="button">Editar Perfil</button>
+    </a>
   <form method="POST" action="{{ url_for('logout') }}">
       <button type="submit">Logout</button>
   </form>
-  <img class="imagem" src="{{ url_for('static', filename='frase_lahiri.svg') }}">
 </div>
+
 
 {% endblock %}
