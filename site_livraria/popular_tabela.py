@@ -93,13 +93,43 @@ books = [
         'Não é fácil ser criança. E ninguém sabe disso melhor do que Greg Heffley, que se vê mergulhado no mundo do ensino fundamental, onde fracotes são obrigados a dividir os corredores com garotos mais altos, mais malvados e que já se barbeiam. Em Diário de um Banana, o autor e ilustrados Jeff Kinney nos apresenta um herói improvável. Como Greg diz em seu diário. Só não espere que seja todo Querido Diário isso, Querido Diário aquilo. Para nossa sorte, o que Greg Heffley diz que fará e o que ele realmente faz são duas coisas bem diferentes.',
         224,
         'https://m.media-amazon.com/images/I/71fWaI5myqL._UF1000,1000_QL80_.jpg'
-    )
+    ),
+    (
+        'J. R. R. Tolkien',
+        'O Senhor dos Anéis: A Sociedade do Anel',
+        'Fantasia, Aventura',
+        '1954-07-29',
+        'HarperCollins',
+        'Frodo Bolseiro parte em uma jornada perigosa para destruir o Um Anel, enfrentando perigos, criaturas sombrias e alianças improváveis.',
+        479,
+        'https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg'
+    ),
+    ('Han Kang', 'O Livro Branco', 'Literatura Contemporânea', '2024-01-01', 'Todavia', 'Uma obra poética e filosófica que explora o silêncio e a introspecção...', 160, 'https://m.media-amazon.com/images/I/51V4+ttPgGL._SY445_SX342_.jpg'),
+    ('Rebecca Yarros', 'Quarta Asa', 'Fantasia', '2024-01-01', 'Arqueiro', 'Uma jovem enfrenta desafios em uma escola de elite para cavaleiros de dragões...', 416, 'https://m.media-amazon.com/images/I/61in0ogKvdL._SY445_SX342_.jpg'),
+    ('Nise da Silveira', 'O Mundo das Imagens', 'Psicologia', '2024-01-01', 'Companhia das Letras', 'Continuação de "Imagens do Inconsciente", explorando a psiquiatria e a arte...', 320, 'https://m.media-amazon.com/images/I/51+Pnyn7-UL._SY445_SX342_.jpg'),
+    ('Carla Madeira', 'Tudo é Rio', 'Ficção Brasileira', '2024-01-01', 'Todavia', 'Romance que narra a história de um casal e suas complexas relações...', 256, 'https://m.media-amazon.com/images/I/41Od9BeoEhL._SY445_SX342_.jpg'),
+    ('Júnior Rostirola', 'Café com Deus Pai 2024: Porções Diárias de Paz', 'Espiritualidade', '2024-01-01', 'Vélos', 'Reflexões diárias para fortalecer a fé e a espiritualidade...', 400, 'https://m.media-amazon.com/images/I/5109YEIX0kL._SY385_.jpg'),
+    ('Ali Hazelwood', 'A Hipótese do Amor (Edição Especial)', 'Romance', '2024-01-01', 'Arqueiro', 'Uma história de amor ambientada no universo acadêmico...', 384, 'https://m.media-amazon.com/images/I/71snJkZzgmL._SY385_.jpg'),
+    ('Anne Frank', 'O Diário de Anne Frank (Edição Oficial - Capa Dura)', 'Memórias', '2024-01-01', 'Record', 'Edição especial do clássico diário de uma jovem durante a Segunda Guerra Mundial...', 352, 'https://m.media-amazon.com/images/I/91tOJgXRfzL._SY425_.jpg'),
+    # Adicionando mais livros únicos para completar 35
+    ('George Orwell', '1984', 'Distopia', '1949-06-08', 'Companhia das Letras', 'Um retrato sombrio de um futuro totalitário...', 328, 'https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg'),
+    ('Aldous Huxley', 'Admirável Mundo Novo', 'Ficção Científica, Distopia', '1932-01-01', 'Martins Fontes', 'Uma sociedade futurista controlada por tecnologia e condicionamento...', 288, 'https://m.media-amazon.com/images/I/41IKTYiymKL._SY445_SX342_.jpg'),
+    ('F. Scott Fitzgerald', 'O Grande Gatsby', 'Romance Clássico', '1925-04-10', 'Suma', 'A história de Jay Gatsby e seu sonho americano...', 218, 'https://m.media-amazon.com/images/I/41Pvw91bWZL._SY445_SX342_.jpg'),
+    ('Harper Lee', 'O Sol é Para Todos', 'Romance', '1960-07-11', 'WMF Martins Fontes', 'A luta de Atticus Finch contra o preconceito racial...', 336, 'https://m.media-amazon.com/images/I/51wdOrz6uNL._SY445_SX342_.jpg'),
+    ('Gabriel García Márquez', 'Cem Anos de Solidão', 'Realismo Mágico', '1967-06-05', 'Record', 'A saga da família Buendía na cidade de Macondo...', 448, 'https://m.media-amazon.com/images/I/515cVYLIP9L._SY445_SX342_.jpg'),
+    ('J.D. Salinger', 'O Apanhador no Campo de Centeio', 'Romance', '1951-07-16', 'Record', 'Holden Caulfield narra suas experiências na adolescência...', 234, 'https://m.media-amazon.com/images/I/51Ooch+98bL._SY445_SX342_.jpg')
+    
 ]
 
 sql = """INSERT INTO livros 
           (liv_autor, liv_titulo, liv_genero, liv_lancamento, liv_editora, liv_descricao, liv_pags, liv_capa) 
           VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
 
-conn.executemany(sql, books)
+for book in books:
+    cursor = conn.execute("SELECT 1 FROM livros WHERE liv_titulo = ?", (book[1],))
+    if not cursor.fetchone():
+        conn.execute(sql, book)
+
+# conn.executemany(sql, books)
 conn.commit()
 conn.close()

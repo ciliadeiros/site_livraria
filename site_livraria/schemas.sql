@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     usu_nome TEXT NOT NULL
 );
 
--- DROP TABLE IF EXISTS livros;
+--DROP TABLE IF EXISTS livros;
 
 CREATE TABLE IF NOT EXISTS livros (
     liv_id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS livros (
     liv_capa TEXT NOT NULL
 );
 
-DROP TABLE IF EXISTS usuarios_livros;
+--DROP TABLE IF EXISTS usuarios_livros;
 
 -- Tabela de ligação muitos-para-muitos
 CREATE TABLE IF NOT EXISTS usuarios_livros (
