@@ -5,7 +5,7 @@
 
 O sistema de Biblioteca Virtual “Read On” é uma aplicação que permite o acesso e armazenamento de livros digitais via web, de forma que os usuários possam pesquisar as obras por gênero, autor, título e ano de lançamento, armazenando suas obras favoritas de maneira fácil, rápida e segura. O objetivo desse sistema é permitir que os usuários organizem e acompanhem seus livros em sua própria biblioteca virtual.
 
-O sistema deve conter uma página de cadastro, necessária para que o usuário possa registrar-se no sistema e, assim, ter acesso à página que contém sua biblioteca com seus livros preferidos. Uma vez que o usuário estiver cadastrado, ele poderá acessar novamente a aplicação por meio de uma página de login, que pedirá o e-mail e a senha para verificar se estes coincidem com o que há no banco de dados, garantindo a segurança e a legitimidade das informações. Além disso, haverá a página de livros, que será a principal, onde o cliente poderá visualizar todas as obras disponíveis no catálogo e filtrá-las por suas características. Dessa forma, quando o cliente quiser adicionar um desses exemplares a sua biblioteca pessoal, terá uma página destinada a isso. Essa biblioteca web tem como principal público-alvo usuários interessados em organizar suas leituras, como leitores amadores, estudantes, professores ou clubes do livro.
+O sistema deve conter uma página de cadastro, necessária para que o usuário possa registrar-se no sistema e, assim, ter acesso à página que contém sua biblioteca com seus livros preferidos. Uma vez que o usuário estiver cadastrado, ele poderá acessar novamente a aplicação por meio de uma página de login, que pedirá o e-mail e a senha para verificar se estes coincidem com o que há no banco de dados, garantindo a segurança e a legitimidade das informações. Além disso, haverá a página de livros, que será a principal, onde o cliente poderá visualizar todas as obras disponíveis no catálogo. Dessa forma, quando o cliente quiser adicionar um desses exemplares a sua biblioteca pessoal, terá uma página destinada a isso. Essa biblioteca web tem como principal público-alvo usuários interessados em organizar suas leituras, como leitores amadores, estudantes, professores ou clubes do livro.
 
 Ademais, deve haver uma opção de logout, que permite que o usuário desconecte-se da sua conta, além de uma página de contatos que permita que o usuário entre em contato com os desenvolvedores do sistema – em caso de dúvidas, problemas de armazenamento, perda de dados, dentre outros.
 
@@ -28,13 +28,9 @@ O sistema deve:
   
     O acesso a página da biblioteca é crucial nesse processo de depósito de dados textuais online, garantindo uma interação efetiva entre o usuário e sua área pessoal. Isso serve para armazenar e gerenciar os produtos de interesse selecionados pelo host (usuário). No sistema proposto, essa página servirá para permitir a visualização, acesso e armazenamento de itens.
 
-- Disponibilizar uma página principal de produtos, com catálogo e filtros;
+- Disponibilizar uma página principal de livros;
   
-    A página principal de produtos é essencial para o sucesso de qualquer aplicação online, pois ela serve como uma vitrine que possibilita o acesso do usuário aos produtos disponibilizados (livros) por um sistema. Ela deve mostrar os livros disponíveis e funcionar com uma filtragem de características (possibilitando a pesquisa de livros por gênero, autor, título, quantidade de páginas, idioma e entre outros), que são de suma importância para auxiliar o usuário a encontrar o produto de sua preferência e escolha. 
-                     
-- Ter uma página de contatos para comunicação com os desenvolvedores (dúvidas, problemas, etc.);
-  
-    Página de contatos é a parte do site que permite uma comunicação direta entre o usuário e administrador. No site o usuário terá acesso a formas de contato, para que qualquer problema (tais quais bugs ou queda de sistema) possa ser relatado e resolvido o quanto antes, além de sugestões para melhorar o site, moldando-o para o público.
+    A página principal de livros é essencial, pois ela serve como uma vitrine que possibilita o acesso do usuário aos livros. 
 
 # Requisitos Não-funcionais
 O sistema deve:
